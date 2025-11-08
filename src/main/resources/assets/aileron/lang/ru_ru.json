@@ -1,0 +1,32 @@
+{
+  "enchantment.aileron.smokestack": "Задымление",
+  "enchantment.aileron.smokestack.desc": "Позволяет элитре накапливать заряды дыма от костра для последующего применения.",
+  "enchantment.aileron.cloudskipper": "Облаколёт",
+  "enchantment.aileron.cloudskipper.desc": "Понижает силу сопротивления элитр выше уровня облаков.",
+
+  "attribute.aileron.cloudskipper_drag": "Сопротивление облаколёта",
+  "attribute.aileron.smokestack_capacity": "Дымовые заряды",
+
+  "key.category.aileron.keys": "Aileron",
+  "key.aileron.smokestack_boost": "Дымовой заряд",
+
+  "aileron.config": "Настройка Aileron",
+  "aileron.config.generalChanges": "Общие изменения",
+  "aileron.config.generalChanges.fireworkUseBehavior": "Использование фейерверков",
+  "aileron.fireworkUseBehavior.COSMETIC": "Косметическое",
+  "aileron.fireworkUseBehavior.NORMAL": "Обычное",
+  "aileron.fireworkUseBehavior.DISABLE": "Отключить",
+  "aileron.config.enchantments": "Зачарования",
+  "aileron.config.enchantments.cloudskipperSpeedMultiplier": "Множитель скорости облаколёта",
+  "aileron.config.enchantments.cloudskipperCloudLevel": "Высота облаков для облаколёта",
+  "aileron.config.enchantments.smokestackAirRecharge": "Восстановление дымовых зарядов в воздухе",
+  "aileron.config.enchantments.smokestackChargeTicks": "Тики до накопления дымового заряда",
+  "aileron.config.cameraSettings": "Настройки камеры",
+  "aileron.config.cameraSettings.doCameraRoll": "Наклон камеры при поворотах",
+  "aileron.config.cameraSettings.cameraRollScale": "Сила наклона камеры",
+  "aileron.config.cameraSettings.cameraRollSpeed": "Скорость наклона камеры",
+  "aileron.config.campfires": "Костры",
+  "aileron.config.campfires.campfiresPushPlayers": "Подъём игроков",
+  "aileron.config.campfires.campfirePushMaxStrength": "Максимальная сила подъёма",
+  "aileron.config.campfires.campfirePushBaseStrength": "Начальная сила подъёма"
+}

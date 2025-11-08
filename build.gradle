@@ -1,6 +1,5 @@
 plugins {
     id 'fabric-loom' version '1.13-SNAPSHOT'
-    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
 version = project.mod_version + "+" + stonecutter.current.version
@@ -14,6 +13,7 @@ repositories {
     maven { url = "https://maven.parchmentmc.org" }
     maven { url = "https://maven.terraformersmc.com/" }
     maven { url = "https://maven.fzzyhmstrs.me/"}
+    maven { url = "https://maven.wispforest.io/releases/" }
     exclusiveContent {
         forRepository {
             maven {
@@ -37,6 +37,12 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
+    modImplementation("io.wispforest:accessories-fabric:${property("accessories_version")}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
+    modRuntimeOnly("maven.modrinth:accessorify:2.3.3+1.21.10-fabric") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
 }
 
 processResources {
@@ -71,34 +77,5 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
-    }
-}
-
-publishMods {
-    file = remapJar.archiveFile
-    changelog = file(getRootDir().path + "/CHANGELOG.md").text
-    type = STABLE
-    modLoaders.add("fabric")
-    displayName = project.mod_version + " for Fabric " + stonecutter.current.version
-
-    modrinth {
-        accessToken = providers.environmentVariable("MR_KEY")
-        projectId = "projectId"
-        minecraftVersions.add(stonecutter.current.version)
-        requires("fabric-api")
-        requires("fzzy-config")
-        optional("modmenu")
-    }
-
-    curseforge {
-        accessToken = providers.environmentVariable("CF_KEY")
-        projectId = "projectId"
-        minecraftVersions.add(stonecutter.current.version)
-        javaVersions.add(JavaVersion.VERSION_21)
-        clientRequired = true
-        serverRequired = true
-        requires("fabric-api")
-        requires("fzzy-config")
-        optional("modmenu")
     }
 }

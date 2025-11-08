@@ -1,0 +1,32 @@
+{
+  "enchantment.aileron.smokestack": "Задимлення",
+  "enchantment.aileron.smokestack.desc": "Дозволяє елітрі накопичувати заряди диму від багаття для подальшого застосування.",
+  "enchantment.aileron.cloudskipper": "Хмароліт",
+  "enchantment.aileron.cloudskipper.desc": "Знижує силу опору елітр вище рівня хмар.",
+
+  "attribute.aileron.cloudskipper_drag": "Опір хмароліта",
+  "attribute.aileron.smokestack_capacity": "Димові заряди",
+
+  "key.category.aileron.keys": "Aileron",
+  "key.aileron.smokestack_boost": "Димовий заряд",
+
+  "aileron.config": "Конфігурація Aileron",
+  "aileron.config.generalChanges": "Загальні зміни",
+  "aileron.config.generalChanges.fireworkUseBehavior": "Використання феєрверків",
+  "aileron.fireworkUseBehavior.COSMETIC": "Косметичне",
+  "aileron.fireworkUseBehavior.NORMAL": "Звичайне",
+  "aileron.fireworkUseBehavior.DISABLE": "Відключити",
+  "aileron.config.enchantments": "Зачарування",
+  "aileron.config.enchantments.cloudskipperSpeedMultiplier": "Множник швидкості хмарольота",
+  "aileron.config.enchantments.cloudskipperCloudLevel": "Висота хмар для хмарольота",
+  "aileron.config.enchantments.smokestackAirRecharge": "Відновлення димових зарядів у повітрі",
+  "aileron.config.enchantments.smokestackChargeTicks": "Тіки до накопичення димового заряду",
+  "aileron.config.cameraSettings": "Налаштування камери",
+  "aileron.config.cameraSettings.doCameraRoll": "Нахил камери під час поворотів",
+  "aileron.config.cameraSettings.cameraRollScale": "Сила нахилу камери",
+  "aileron.config.cameraSettings.cameraRollSpeed": "Швидкість нахилу камери",
+  "aileron.config.campfires": "Багаття",
+  "aileron.config.campfires.campfiresPushPlayers": "Підйом гравців",
+  "aileron.config.campfires.campfirePushMaxStrength": "Максимальна сила підйому",
+  "aileron.config.campfires.campfirePushBaseStrength": "Початкова сила підйому"
+}

@@ -1,0 +1,67 @@
+package com.lodestar.aileron.mixin;
+
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.lodestar.aileron.Aileron;
+import com.lodestar.aileron.accessor.AileronPlayer;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+
+@Mixin(LivingEntity.class)
+public abstract class LivingEntityMixin extends Entity {
+
+	public LivingEntityMixin(EntityType<?> entityType, Level level) {
+		super(entityType, level);
+	}
+
+	@SuppressWarnings("resource")
+    @ModifyReturnValue(
+            method = "updateFallFlyingMovement",
+            at = @At(value = "RETURN")
+    )
+	private Vec3 modifyVelocity(Vec3 vec3) {
+        LivingEntity instance = (LivingEntity) (Object) this;
+		Vec3 negator = new Vec3(1.0 / 0.9900000095367432D, 1.0, 1.0 / 0.9900000095367432D);
+
+		double cloudskipperDrag = instance instanceof Player ? ((AileronPlayer) (Player) instance).aileron$getCloudskipperDrag() : 1.0;
+
+		double fac = 0;
+		double y = instance.position().y;
+		double cloudLevel = Aileron.CONFIG.enchantments.cloudskipperCloudLevel.get();
+		double bottom = cloudLevel - 92.0;
+		double top = cloudLevel + 38.0;
+		if (y < bottom)
+			fac = 0.0;
+		else if (y < top)
+			fac = 0.00006 * Math.pow(y - bottom, 2);
+		else
+			fac = 1;
+
+		fac *= 0.6 * Aileron.CONFIG.enchantments.cloudskipperSpeedMultiplier.get();
+		fac *= (1.0 - cloudskipperDrag);
+
+		if (fac > 0.1 && !level().isClientSide() && tickCount % ((int) (1.0 - fac) * 2 + 1) == 0) {
+			ServerLevel serverLevel = ((ServerLevel) level());
+
+			for (ServerPlayer player : serverLevel.players()) {
+				Vec3 pos = instance.position().add(instance.getLookAngle().scale(-1.0));
+				serverLevel.sendParticles(player, ParticleTypes.POOF, true, false, pos.x, pos.y, pos.z, 1 + (int) (fac * 4.0), 0.1, 0.1, 0.1, 0.025);
+			}
+		}
+
+		negator = new Vec3(negator.x, 1.0, negator.z);
+
+		// lerp between vec3 and vec3 * negator based on fac
+		vec3 = vec3.lerp(vec3.multiply(negator), fac);
+
+        return vec3;
+    }
+}

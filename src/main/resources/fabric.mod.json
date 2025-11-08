@@ -1,24 +1,29 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "aileron",
   "version": "${version}",
-  "name": "modname",
-  "description": "",
-  "authors": [],
-  "contact": {},
-  "license": "MIT",
+  "name": "Aileron",
+  "description": "A unique and expansive Elytra overhaul",
+  "authors": [
+    "Team Lodestar",
+    "pajic"
+  ],
+  "contact": {
+    "sources": "https://github.com/pajicadvance/Aileron/tree/1.21.10"
+  },
+  "license": "GNU Lesser General Public License",
   "icon": "icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "me.pajic.modid.ClientMain"
+      "com.lodestar.aileron.client.AileronClient"
     ],
     "main": [
-      "me.pajic.modid.Main"
+      "com.lodestar.aileron.Aileron"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "aileron.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",

@@ -1,0 +1,32 @@
+{
+  "enchantment.aileron.smokestack": "Smokestack",
+  "enchantment.aileron.smokestack.desc": "Allows elytra boosts from campfires to be stored for later use.",
+  "enchantment.aileron.cloudskipper": "Cloudskipper",
+  "enchantment.aileron.cloudskipper.desc": "Reduces horizontal elytra drag while above the cloud layer.",
+
+  "attribute.aileron.cloudskipper_drag": "Cloudskipper Drag",
+  "attribute.aileron.smokestack_capacity": "Smokestack Capacity",
+
+  "key.category.aileron.keys": "Aileron",
+  "key.aileron.smokestack_boost": "Smokestack Boost",
+
+  "aileron.config": "Aileron Config",
+  "aileron.config.generalChanges": "General Changes",
+  "aileron.config.generalChanges.fireworkUseBehavior": "Firework Use Behavior",
+  "aileron.fireworkUseBehavior.COSMETIC": "Cosmetic",
+  "aileron.fireworkUseBehavior.NORMAL": "Normal",
+  "aileron.fireworkUseBehavior.DISABLE": "Disable",
+  "aileron.config.enchantments": "Enchantments",
+  "aileron.config.enchantments.cloudskipperSpeedMultiplier": "Cloudskipper Speed Multiplier",
+  "aileron.config.enchantments.cloudskipperCloudLevel": "Cloudskipper Cloud Level",
+  "aileron.config.enchantments.smokestackAirRecharge": "Smokestack Air Recharge",
+  "aileron.config.enchantments.smokestackChargeTicks": "Smokestack Charge Ticks",
+  "aileron.config.cameraSettings": "Camera Settings",
+  "aileron.config.cameraSettings.doCameraRoll": "Tilt Camera on Turns",
+  "aileron.config.cameraSettings.cameraRollScale": "Camera Tilt Scale",
+  "aileron.config.cameraSettings.cameraRollSpeed": "Camera Tilt Speed",
+  "aileron.config.campfires": "Campfires",
+  "aileron.config.campfires.campfiresPushPlayers": "Push Players",
+  "aileron.config.campfires.campfirePushMaxStrength": "Max Push Strength",
+  "aileron.config.campfires.campfirePushBaseStrength": "Base Push Strength"
+}

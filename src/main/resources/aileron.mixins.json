@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.lodestar.aileron.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "CampfireBlockEntityMixin",
+    "CampfireBlockMixin",
+    "EnchantmentHelperMixin",
+    "LivingEntityMixin",
+    "MixinFireworkRocketItem",
+    "PlayerEntityMixin"
+  ],
+  "client": [
+    "CameraMixin",
+    "GuiMixin",
+    "MinecraftMixin",
+    "MixinGameRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
