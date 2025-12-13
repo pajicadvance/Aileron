@@ -15,7 +15,7 @@ public abstract class CameraMixin implements AileronCamera {
 	@Unique double EMAValue = 0.0;
 
 	@Shadow
-	public abstract float getYRot();
+	public abstract float /*? < 1.21.11 {*//*getYRot*//*?} else {*/yRot/*?}*/();
 
 	@Override
 	public double aileron$getPreviousEMAValue() {

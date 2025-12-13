@@ -5,13 +5,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.HumanoidArm;
 
 public class AileronGuiRender {
 
-    private static final ResourceLocation TEXTURE_EMPTY = Aileron.withModNamespace("smokestack_empty");
-    private static final ResourceLocation TEXTURE_FULL = Aileron.withModNamespace("smokestack_full");
+    private static final Identifier TEXTURE_EMPTY = Aileron.withModNamespace("smokestack_empty");
+    private static final Identifier TEXTURE_FULL = Aileron.withModNamespace("smokestack_full");
 
     public static int moveAttackIndicator(int x) {
         LocalPlayer player = Minecraft.getInstance().player;
@@ -36,7 +36,7 @@ public class AileronGuiRender {
 
         int smokeStackCharges = ((AileronPlayer) player).aileron$getSmokestackCharges();
         for (int spriteIndex = 0; spriteIndex < smokeStockLevel; spriteIndex++) {
-            ResourceLocation texture;
+            Identifier texture;
             int xPos = spriteIndex / 3;
             int yPos = spriteIndex % 3;
             if (smokeStackCharges > spriteIndex) texture = TEXTURE_FULL;

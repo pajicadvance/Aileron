@@ -5,7 +5,7 @@ import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class Aileron implements ModInitializer {
     public static final String MOD_ID = "aileron";
-    public static final ResourceLocation CONFIG_RL = withModNamespace("config");
+    public static final Identifier CONFIG_RL = withModNamespace("config");
     public static AileronConfig CONFIG = ConfigApiJava.registerAndLoadConfig(AileronConfig::new);
 
     @Override
@@ -87,7 +87,7 @@ public class Aileron implements ModInitializer {
         }
     }
 
-    public static ResourceLocation withModNamespace(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+    public static Identifier withModNamespace(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 }

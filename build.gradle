@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.13-SNAPSHOT'
+    id 'fabric-loom' version '1.14-SNAPSHOT'
 }
 
 version = project.mod_version + "+" + stonecutter.current.version
@@ -27,6 +27,22 @@ repositories {
     }
 }
 
+stonecutter {
+    var dir = current.parsed.matches(">1.21.10");
+    replacements.string {
+        direction = dir
+        replace("ValidatedIdentifier", "ValidatedIdentifier")
+    }
+    replacements.string {
+        direction = dir
+        replace("ResourceLocation", "Identifier")
+    }
+    replacements.string {
+        direction = dir
+        replace(".location()", ".identifier()")
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${stonecutter.current.project}"
     mappings loom.layered() {
@@ -37,12 +53,12 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
-    modImplementation("io.wispforest:accessories-fabric:${property("accessories_version")}") {
+    modCompileOnly("io.wispforest:accessories-fabric:${property("accessories_version")}") {
         exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
     }
-    modRuntimeOnly("maven.modrinth:accessorify:2.3.3+1.21.10-fabric") {
+    /*modRuntimeOnly("maven.modrinth:accessorify:2.3.3+1.21.10-fabric") {
         exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
-    }
+    }*/
 }
 
 processResources {

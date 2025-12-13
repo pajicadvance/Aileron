@@ -2,7 +2,7 @@ package com.lodestar.aileron;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -10,11 +10,11 @@ import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
 
 public class AileronLootModifiers {
 
-    private static final ResourceLocation END_CITY_TREASURE_ID = ResourceLocation.withDefaultNamespace("chests/end_city_treasure");
+    private static final Identifier END_CITY_TREASURE_ID = Identifier.withDefaultNamespace("chests/end_city_treasure");
 
     public static void modifyLootTables() {
-        LootTableEvents.MODIFY.register((key, tableBuilder, source, registry) -> {
-            if (key.location().equals(END_CITY_TREASURE_ID)) {
+        LootTableEvents.MODIFY.register((key, tableBuilder, ignored, registry) -> {
+            if (key.identifier().equals(END_CITY_TREASURE_ID)) {
                 LootPool.Builder poolBuilder = LootPool.lootPool()
                         .add(LootItem.lootTableItem(Items.BOOK)
                                 .apply(EnchantRandomlyFunction.randomEnchantment().withEnchantment(registry.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(AileronEnchantments.CLOUDSKIPPER)))

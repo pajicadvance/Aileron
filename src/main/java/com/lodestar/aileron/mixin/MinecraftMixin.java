@@ -27,7 +27,7 @@ public class MinecraftMixin {
 		Camera camera = gameRenderer.getMainCamera();
 		AileronCamera ema = ((AileronCamera) camera);
 
-		float curYaw = camera.getEntity() != null ? camera.getEntity().getYRot() : 0;
+		float curYaw = camera./*? < 1.21.11 {*//*getEntity*//*?} else {*/entity/*?}*/() != null ? camera./*? < 1.21.11 {*//*getEntity*//*?} else {*/entity/*?}*/().getYRot() : 0;
 
 		previousEMA = EMA;
 		EMA = (float) Mth.lerp(Aileron.CONFIG.cameraSettings.cameraRollSpeed.get(), EMA, curYaw);
