@@ -2,7 +2,7 @@ package com.lodestar.aileron;
 
 import com.lodestar.aileron.accessor.AileronPlayer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
@@ -21,7 +21,7 @@ public class AileronGuiRender {
         return x;
     }
 
-    public static void renderSmokeStackBar(GuiGraphics graphics) {
+    public static void renderSmokeStackBar(GuiGraphicsExtractor graphics) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null || !Aileron.canChargeSmokeStack(player)) return;
 

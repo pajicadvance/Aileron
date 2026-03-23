@@ -19,12 +19,12 @@ public class AileronNetworking {
     }
 
     public static void register() {
-        PayloadTypeRegistry.playS2C().register(SmokestackLaunchPayload.ID, SmokestackLaunchPayload.CODEC);
-        PayloadTypeRegistry.playC2S().register(SmokestackDashPayload.ID, SmokestackDashPayload.CODEC);
+        PayloadTypeRegistry.clientboundPlay().register(SmokestackLaunchPayload.ID, SmokestackLaunchPayload.CODEC);
+        PayloadTypeRegistry.serverboundPlay().register(SmokestackDashPayload.ID, SmokestackDashPayload.CODEC);
 
         ServerPlayNetworking.registerGlobalReceiver(
                 AileronNetworking.SMOKESTACK_DASH_PACKET_ID,
-                (payload, context) -> Aileron.playerDashedServer(context.player())
+                (_, context) -> Aileron.playerDashedServer(context.player())
         );
     }
 }

@@ -30,14 +30,14 @@ public class MixinGameRenderer {
             method = "renderLevel",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lcom/mojang/blaze3d/vertex/PoseStack;F)V"
+                    target = "Lnet/minecraft/client/renderer/GameRenderer;bobHurt(Lnet/minecraft/client/renderer/state/level/CameraRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;)V"
             )
     )
-	public void renderLevel(DeltaTracker deltaTracker, CallbackInfo ci, @Local PoseStack poseStack) {
+	public void renderLevel(DeltaTracker deltaTracker, CallbackInfo ci, @Local(name = "bobStack") PoseStack bobStack) {
 		Minecraft minecraft = Minecraft.getInstance();
 		LocalPlayer player = minecraft.player;
 		if (player != null && player.isFallFlying() && !(CompatFlags.CAMERA_OVERHAUL_LOADED || CompatFlags.BARREL_ROLL_LOADED)) {
-			float partial = mainCamera.getPartialTickTime();
+			float partial = mainCamera.getCameraEntityPartialTicks(deltaTracker);
 
 			float roll = ((AileronCamera) mainCamera).aileron$getSmoothedEMADifference(player, partial) * 0.225f;
 			float deltaMovementSpeed = (float) player.getDeltaMovement().length();
@@ -45,7 +45,7 @@ public class MixinGameRenderer {
 			float rotation = (float) (roll * smoothDeltaMovementSpeed * Aileron.CONFIG.cameraSettings.cameraRollScale.get());
 
 			if (Aileron.CONFIG.cameraSettings.doCameraRoll.get())
-				poseStack.mulPose(Axis.ZP.rotationDegrees(rotation));
+				bobStack.mulPose(Axis.ZP.rotationDegrees(rotation));
 		}
 	}
 }

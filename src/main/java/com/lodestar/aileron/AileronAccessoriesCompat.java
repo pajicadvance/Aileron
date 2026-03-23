@@ -1,5 +1,6 @@
 package com.lodestar.aileron;
 
+/*
 import io.wispforest.accessories.api.AccessoriesCapability;
 import io.wispforest.accessories.api.slot.SlotEntryReference;
 import net.minecraft.core.component.DataComponents;
@@ -19,3 +20,4 @@ public class AileronAccessoriesCompat {
         return ItemStack.EMPTY;
     }
 }
+*/

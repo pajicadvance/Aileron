@@ -51,7 +51,7 @@ public class Aileron implements ModInitializer {
 
     public static ItemStack getElytra(LivingEntity entity) {
         ItemStack stack = ItemStack.EMPTY;
-        if (CompatFlags.ACCESSORIES_LOADED) stack = AileronAccessoriesCompat.getAccessoryElytra(entity);
+        //if (CompatFlags.ACCESSORIES_LOADED) stack = AileronAccessoriesCompat.getAccessoryElytra(entity);
         if (stack.isEmpty()) {
             ItemStack chestItem = getChestElytra(entity);
             stack = (!chestItem.isEmpty()) ? chestItem : ItemStack.EMPTY;

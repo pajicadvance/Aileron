@@ -3,7 +3,7 @@ package com.lodestar.aileron.mixin;
 import com.lodestar.aileron.AileronGuiRender;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -14,10 +14,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class GuiMixin {
 
 	@ModifyArg(
-            method = "renderItemHotbar",
+            method = "extractItemHotbar",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V",
+                    target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V",
                     ordinal = 4
             ),
             index = 2
@@ -27,10 +27,10 @@ public class GuiMixin {
     }
 
     @ModifyArg(
-            method = "renderItemHotbar",
+            method = "extractItemHotbar",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIII)V"
+                    target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIIIIIII)V"
             ),
             index = 6
     )
@@ -39,10 +39,10 @@ public class GuiMixin {
     }
 
 	@Inject(
-            method = "renderItemHotbar",
+            method = "extractItemHotbar",
             at = @At(value = "TAIL")
     )
-	public void renderSmokeStackBar(GuiGraphics guiGraphics, DeltaTracker deltaTracker, CallbackInfo ci) {
-		AileronGuiRender.renderSmokeStackBar(guiGraphics);
+	public void renderSmokeStackBar(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker, CallbackInfo ci) {
+		AileronGuiRender.renderSmokeStackBar(graphics);
 	}
 }

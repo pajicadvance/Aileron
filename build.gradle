@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.14-SNAPSHOT'
+    id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT'
 }
 
 version = project.mod_version + "+" + stonecutter.current.version
@@ -10,10 +10,8 @@ base {
 }
 
 repositories {
-    maven { url = "https://maven.parchmentmc.org" }
     maven { url = "https://maven.terraformersmc.com/" }
     maven { url = "https://maven.fzzyhmstrs.me/"}
-    maven { url = "https://maven.wispforest.io/releases/" }
     exclusiveContent {
         forRepository {
             maven {
@@ -27,38 +25,12 @@ repositories {
     }
 }
 
-stonecutter {
-    var dir = current.parsed.matches(">1.21.10");
-    replacements.string {
-        direction = dir
-        replace("ValidatedIdentifier", "ValidatedIdentifier")
-    }
-    replacements.string {
-        direction = dir
-        replace("ResourceLocation", "Identifier")
-    }
-    replacements.string {
-        direction = dir
-        replace(".location()", ".identifier()")
-    }
-}
-
 dependencies {
     minecraft "com.mojang:minecraft:${stonecutter.current.project}"
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${property("parchment_version")}@zip")
-    }
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
-    modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
-    modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
-    modCompileOnly("io.wispforest:accessories-fabric:${property("accessories_version")}") {
-        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
-    }
-    /*modRuntimeOnly("maven.modrinth:accessorify:2.3.3+1.21.10-fabric") {
-        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
-    }*/
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
+    implementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
+    implementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
 }
 
 processResources {
@@ -74,7 +46,7 @@ processResources {
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 tasks.withType(JavaCompile).configureEach {
     it.options.encoding = "UTF-8"
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {

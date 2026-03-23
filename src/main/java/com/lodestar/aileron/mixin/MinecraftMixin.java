@@ -21,13 +21,13 @@ public class MinecraftMixin {
 	@Unique float previousEMA = 0.0f;
 	@Unique float EMA = 0.0f;
 
-	@SuppressWarnings("ConstantValue")
+    @SuppressWarnings("DataFlowIssue")
     @Inject(method = "tick", at = @At("TAIL"))
 	public void tick(CallbackInfo ci) {
 		Camera camera = gameRenderer.getMainCamera();
 		AileronCamera ema = ((AileronCamera) camera);
 
-		float curYaw = camera./*? < 1.21.11 {*//*getEntity*//*?} else {*/entity/*?}*/() != null ? camera./*? < 1.21.11 {*//*getEntity*//*?} else {*/entity/*?}*/().getYRot() : 0;
+		float curYaw = camera.entity() != null ? camera.entity().getYRot() : 0;
 
 		previousEMA = EMA;
 		EMA = (float) Mth.lerp(Aileron.CONFIG.cameraSettings.cameraRollSpeed.get(), EMA, curYaw);

@@ -2,7 +2,7 @@ package com.lodestar.aileron.client;
 
 import com.lodestar.aileron.Aileron;
 import com.mojang.blaze3d.platform.InputConstants;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import org.lwjgl.glfw.GLFW;
 
@@ -18,6 +18,6 @@ public class AileronClientKeybinds {
     );
 
     public static void register() {
-        KeyBindingHelper.registerKeyBinding(AileronClientKeybinds.SMOKESTACK_BOOST);
+        KeyMappingHelper.registerKeyMapping(AileronClientKeybinds.SMOKESTACK_BOOST);
     }
 }

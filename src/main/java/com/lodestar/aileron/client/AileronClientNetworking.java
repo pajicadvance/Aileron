@@ -13,7 +13,7 @@ public class AileronClientNetworking {
     public static void register() {
         ClientPlayNetworking.registerGlobalReceiver(
                 AileronNetworking.SMOKESTACK_LAUNCH_PACKET_ID,
-                (payload, context) -> AileronClient.launchPlayer()
+                (_, _) -> AileronClient.launchPlayer()
         );
     }
 }
