@@ -37,6 +37,11 @@ public class Aileron implements ModInitializer {
         return player != null && ((AileronPlayer)player).aileron$getSmokestackCapacity() > 0 && !elytra.nextDamageWillBreak() && ((((AileronPlayer)player).aileron$getSmokestackCharges() > 0 && player.isFallFlying()) || player.isCrouching());
     }
 
+    public static boolean canCampfireLaunch(@Nullable Player player) {
+    ItemStack elytra = getElytra(player);
+    return player != null && !elytra.isEmpty() && !elytra.nextDamageWillBreak();
+}
+
     public static boolean isElytra(ItemStack stack) {
         return stack.has(DataComponents.GLIDER);
     }
