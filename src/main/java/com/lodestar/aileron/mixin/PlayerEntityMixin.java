@@ -113,7 +113,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 		}
 
 		BlockState underBlockState = level.getBlockState(self.blockPosition());
-		if (self.isCrouching() && underBlockState.is(BlockTags.CAMPFIRES) && Aileron.canChargeSmokeStack(self)) {
+		if (self.isCrouching() && underBlockState.is(BlockTags.CAMPFIRES) && Aileron.canCampfireLaunch(self)) {
 
 			if (level.isClientSide()) {
 				boolean isSoul = underBlockState.is(Blocks.SOUL_CAMPFIRE);
