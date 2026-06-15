@@ -2,6 +2,7 @@ package com.lodestar.aileron.mixin;
 
 import com.lodestar.aileron.Aileron;
 import com.lodestar.aileron.accessor.AileronCamera;
+import com.lodestar.aileron.accessor.AileronGameRenderer;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
@@ -24,7 +25,7 @@ public class MinecraftMixin {
     @SuppressWarnings("DataFlowIssue")
     @Inject(method = "tick", at = @At("TAIL"))
 	public void tick(CallbackInfo ci) {
-		Camera camera = gameRenderer.getMainCamera();
+		Camera camera = ((AileronGameRenderer) gameRenderer).aileron$getCamera();
 		AileronCamera ema = ((AileronCamera) camera);
 
 		float curYaw = camera.entity() != null ? camera.entity().getYRot() : 0;

@@ -21,12 +21,12 @@ public class CampfireBlockMixin {
                     target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)V"
             )
     )
-	public void hurt(Entity instance, DamageSource damageSource, float f) {
+	public void hurt(Entity instance, DamageSource source, float damage) {
 		if (!(
                 instance.isCrouching() &&
                 ((instance instanceof Player && Aileron.isElytra(Aileron.getElytra((Player) instance)))) ||
                 (instance instanceof Player && (((AileronPlayer) instance).aileron$getCampfireDamageIFrames() > 0))
         ))
-            instance.hurt(damageSource, f);
+            instance.hurt(source, damage);
 	}
 }

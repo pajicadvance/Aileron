@@ -22,7 +22,7 @@ public class EnchantmentHelperMixin {
             method = "getAvailableEnchantmentResults",
             at = @At("RETURN")
     )
-	private static void getPossibleEntries(int i, ItemStack itemStack, Stream<Holder<Enchantment>> stream, CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
+	private static void getPossibleEntries(int value, ItemStack itemStack, Stream<Holder<Enchantment>> source, CallbackInfoReturnable<List<EnchantmentInstance>> cir) {
 		if (!Aileron.isElytra(itemStack)) {
 			cir.getReturnValue().removeIf(ele ->
                     ele != null && (ele.enchantment().is(AileronEnchantments.CLOUDSKIPPER) || ele.enchantment().is(AileronEnchantments.SMOKESTACK))

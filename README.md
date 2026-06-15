@@ -1,4 +1,4 @@
-This is Aileron updated to the latest Fabric version with a different config API for proper config sync and native Accessories support.
+This is Aileron updated to the latest Fabric version with a different config API for proper config sync.
 
 Original mod links:
 

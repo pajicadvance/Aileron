@@ -26,14 +26,14 @@ public class MixinFireworkRocketItem {
             ),
             cancellable = true
     )
-	public void use(Level level, Player player, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> cir) {
+	public void use(Level level, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
 		if (Aileron.CONFIG.generalChanges.fireworkUseBehavior.get() == FireworkUseBehavior.NORMAL) return;
 		if (Aileron.CONFIG.generalChanges.fireworkUseBehavior.get() == FireworkUseBehavior.DISABLE) {
 			cir.setReturnValue(InteractionResult.PASS);
 			return;
 		}
 
-		ItemStack stack = player.getItemInHand(interactionHand);
+		ItemStack stack = player.getItemInHand(hand);
 		if (!player.getAbilities().instabuild) stack.shrink(1);
 
 		((AileronPlayer) player).aileron$setSmokeTrailTicks(100);

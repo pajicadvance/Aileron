@@ -27,14 +27,14 @@ public class CampfireBlockEntityMixin {
                     target = "Lnet/minecraft/world/level/block/CampfireBlock;makeParticles(Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;ZZ)V"
             )
     )
-	private static void makeParticles(Level level, BlockPos blockPos, boolean bl, boolean bl2) {
+	private static void makeParticles(Level level, BlockPos pos, boolean isSignalFire, boolean smoking) {
 
 		// check for neighboring campfires
 		BlockPos[] possibleNeighbors = new BlockPos[]{
-				blockPos.north(),
-				blockPos.south(),
-				blockPos.east(),
-				blockPos.west()
+				pos.north(),
+				pos.south(),
+				pos.east(),
+				pos.west()
 		};
 
 		int neighbors = 0;
@@ -51,23 +51,23 @@ public class CampfireBlockEntityMixin {
             if (opt.isPresent() && opt.get().value() instanceof SimpleParticleType particleType) {
                 level.addAlwaysVisibleParticle(
                         particleType, true,
-                        (double) blockPos.getX() + 0.5D + random.nextDouble() / 3.0D * (double) (random.nextBoolean() ? 1 : -1),
-                        (double) blockPos.getY() + random.nextDouble() + random.nextDouble(),
-                        (double) blockPos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double) (random.nextBoolean() ? 1 : -1),
-                        neighbors * 40 + (bl ? 280 : 80), 0.07D, 0.0D
+                        (double) pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double) (random.nextBoolean() ? 1 : -1),
+                        (double) pos.getY() + random.nextDouble() + random.nextDouble(),
+                        (double) pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double) (random.nextBoolean() ? 1 : -1),
+                        neighbors * 40 + (isSignalFire ? 280 : 80), 0.07D, 0.0D
                 );
-                if (bl2) {
+                if (smoking) {
                     level.addParticle(
                             ParticleTypes.SMOKE,
-                            (double) blockPos.getX() + 0.5D + random.nextDouble() / 4.0D * (double) (random.nextBoolean() ? 1 : -1),
-                            (double) blockPos.getY() + 0.4D,
-                            (double) blockPos.getZ() + 0.5D + random.nextDouble() / 4.0D * (double) (random.nextBoolean() ? 1 : -1)
+                            (double) pos.getX() + 0.5D + random.nextDouble() / 4.0D * (double) (random.nextBoolean() ? 1 : -1),
+                            (double) pos.getY() + 0.4D,
+                            (double) pos.getZ() + 0.5D + random.nextDouble() / 4.0D * (double) (random.nextBoolean() ? 1 : -1)
                             , 0.0D, 0.005D, 0.0D
                     );
                 }
             }
 		} else {
-			CampfireBlock.makeParticles(level, blockPos, bl, bl2);
+			CampfireBlock.makeParticles(level, pos, isSignalFire, smoking);
 		}
 	}
 }

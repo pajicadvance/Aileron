@@ -31,9 +31,9 @@ public abstract class LivingEntityMixin extends Entity {
         LivingEntity instance = (LivingEntity) (Object) this;
 		Vec3 negator = new Vec3(1.0 / 0.9900000095367432D, 1.0, 1.0 / 0.9900000095367432D);
 
-		double cloudskipperDrag = instance instanceof Player ? ((AileronPlayer) (Player) instance).aileron$getCloudskipperDrag() : 1.0;
+		double cloudskipperDrag = instance instanceof Player ? ((AileronPlayer) instance).aileron$getCloudskipperDrag() : 1.0;
 
-		double fac = 0;
+		double fac;
 		double y = instance.position().y;
 		double cloudLevel = Aileron.CONFIG.enchantments.cloudskipperCloudLevel.get();
 		double bottom = cloudLevel - 92.0;

@@ -13,14 +13,14 @@ pluginManagement {
 }
 
 plugins {
-    id("dev.kikugie.stonecutter") version "0.9"
+    id("dev.kikugie.stonecutter") version "0.9.5"
 }
 
 stonecutter {
     kotlinController = false
     centralScript = "build.gradle"
     create(getRootProject()) {
-        versions "26.1-rc-3"
+        versions "26.1-rc-3", "26.2-rc-2"
         vcsVersion = "26.1-rc-3"
     }
 }

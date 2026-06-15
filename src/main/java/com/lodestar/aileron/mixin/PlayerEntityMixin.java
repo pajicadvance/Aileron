@@ -128,7 +128,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 				}
 			}
 			else {
-				final ServerLevel serverLevel = ((ServerLevel) level);
 				chargeTime++;
 
 				if (chargeTime % Aileron.CONFIG.enchantments.smokestackChargeTicks.get() == 0 && chargeTime > 0) {
@@ -275,8 +274,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements AileronP
 	}
 
 	@Inject(method = "defineSynchedData", at = @At("TAIL"))
-	public void addSynchedData(SynchedEntityData.Builder builder, CallbackInfo ci) {
-		builder.define(SMOKESTACK_CHARGES, 0);
+	public void addSynchedData(SynchedEntityData.Builder entityData, CallbackInfo ci) {
+		entityData.define(SMOKESTACK_CHARGES, 0);
 	}
 
 	@Inject(method = "readAdditionalSaveData", at = @At("TAIL"))

@@ -1,7 +1,7 @@
 plugins {
     id "dev.kikugie.stonecutter"
 }
-stonecutter.active "26.1-rc-3"
+stonecutter.active "26.2-rc-2"
 
 tasks.register("runActiveClient") {
     group = "fabric"
@@ -11,4 +11,15 @@ tasks.register("runActiveClient") {
 tasks.register("runActiveServer") {
     group = "fabric"
     dependsOn(":${stonecutter.current.project}:runServer")
+}
+
+stonecutter.parameters {
+    replacements {
+        filters.exclude("**/*.accesswidener", "**/*.cfg")
+        string(current.parsed > "26.1.2") {
+            replace("import net.minecraft.advancements.criterion.EntitySubPredicate;", "import net.minecraft.advancements.predicates.entity.EntitySubPredicate;")
+            replace("import net.minecraft.client.gui.Gui;", "import net.minecraft.client.gui.Hud;")
+            replace("@Mixin(Gui.class)", "@Mixin(Hud.class)")
+        }
+    }
 }
